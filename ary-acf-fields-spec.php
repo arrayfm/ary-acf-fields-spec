@@ -15,7 +15,10 @@ if(!defined('ABSPATH')){
 
 define('ARY_AFS_VERSION', '0.0.1');
 
-require_once __DIR__ . '/vendor/autoload.php';
+$autoload_file = __DIR__ . 'vendor/autoload.php';
+if(is_readable($autoload_file)){
+  require_once $autoload_file;
+}
 
 function aryAcfFields() {
 	global $aryAcfFields;
