@@ -170,9 +170,7 @@ class Fields {
           'value' => '1'
         ], $options);
         
-        return [
-          array_intersect_key($_conditional_options, array_flip(['field', 'operator', 'value']))
-        ];
+        return array_intersect_key($_conditional_options, array_flip(['field', 'operator', 'value']));
       default:
         return NULL;
     }
