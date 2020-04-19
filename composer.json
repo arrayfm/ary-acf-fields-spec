@@ -1,0 +1,11 @@
+{
+    "name": "arrayfm/ary-acf-fields-spec",
+    "require": {},
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "AryAcfFields\\": "app"
+        }
+    },
+    "prefer-stable": true
+}
