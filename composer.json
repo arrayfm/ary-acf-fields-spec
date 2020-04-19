@@ -1,6 +1,7 @@
 {
     "name": "arrayfm/ary-acf-fields-spec",
     "require": {},
+    "type": "wordpress-plugin",
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
