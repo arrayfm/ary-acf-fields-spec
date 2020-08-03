@@ -42,27 +42,29 @@ class Fields {
   function integrate_fields($fields = [], $prefix_key = ''){
     $f = [];
     
-    foreach($fields as $key => $field){
-      $values = [];
+    if($fields && count($fields) > 0){
+      foreach($fields as $key => $field){
+        $values = [];
 
-      foreach($field as $f_key => $field_value){
-        $value = $this->get_field_value($field_value, $prefix_key);
-        if(!is_null($value)){
-          $values[$f_key] = $value;
+        foreach($field as $f_key => $field_value){
+          $value = $this->get_field_value($field_value, $prefix_key);
+          if(!is_null($value)){
+            $values[$f_key] = $value;
+          }
         }
-      }
 
-      $f[] = array_merge(
-        [
-          'name' => $key
-        ],
-        $values,
-        $this->integrate_for_field_type($values, $key, $prefix_key),
-        $this->map_sub_fields($values, $key, $prefix_key),
-        [
-          'key' => $this->get_field_key($key, $prefix_key)
-        ]
-      );
+        $f[] = array_merge(
+          [
+            'name' => $key
+          ],
+          $values,
+          $this->integrate_for_field_type($values, $key, $prefix_key),
+          $this->map_sub_fields($values, $key, $prefix_key),
+          [
+            'key' => $this->get_field_key($key, $prefix_key)
+          ]
+        );
+      }
     }
 
     return $f;

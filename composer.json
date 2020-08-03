@@ -1,14 +1,14 @@
-{  
-    "name": "arrayfm/ary-acf-fields-spec",
-    "type": "wordpress-plugin",
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "AryAcfFields\\": "app"
-        }
-    },
-    "require": {
-        "composer/installers": "^1.0"
-    },
-    "prefer-stable": true
+{
+  "name": "arrayfm/ary-acf-fields-spec",
+  "type": "wordpress-plugin",
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "AryAcfFields\\": "app"
+    }
+  },
+  "require": {
+    "composer/installers": "^1.0"
+  },
+  "prefer-stable": true
 }
