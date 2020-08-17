@@ -55,7 +55,8 @@ class Fields {
 
         $f[] = array_merge(
           [
-            'name' => $key
+            'name' => $key,
+            'wpml_cf_preferences' => 2
           ],
           $values,
           $this->integrate_for_field_type($values, $key, $prefix_key),
