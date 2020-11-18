@@ -26,7 +26,7 @@ class Fields {
     $h->iterate_file_set('sets', function($k, $i){
       $_d = array_merge($i, [
         'key' => $k,
-        'position' => $i['position'] ? $i['position'] : 'normal',
+        'position' => $this->array_has_key('position', $i) ? $i['position'] : 'normal',
         'style' => 'seamless',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
@@ -72,14 +72,14 @@ class Fields {
   }
 
   function map_sub_fields($field, $key = '', $prefix_key = ''){
-    $sub_fields = $field['sub_fields'];
-    if(isset($sub_fields) && is_array($sub_fields)){
-      return [
-        'sub_fields' => $this->integrate_fields($sub_fields, $this->get_field_key($key, $prefix_key))
-      ];
-    } else {
+    if(!$this->array_has_key('sub_fields', $field)){
       return [];
     }
+
+    $sub_fields = $field['sub_fields'];
+    return [
+      'sub_fields' => $this->integrate_fields($sub_fields, $this->get_field_key($key, $prefix_key))
+    ];
   }
 
   function integrate_flexible_layouts($layouts, $key = '', $prefix_key = ''){
@@ -106,6 +106,10 @@ class Fields {
   }
 
   function integrate_for_field_type($field, $key = '', $prefix_key = ''){
+    if(!$this->array_has_key('type', $field)){
+      return [];
+    }
+
     $field_type = $field['type'];
 
     if(isset($this->fields[$field_type])){
@@ -150,7 +154,7 @@ class Fields {
   }
 
   function field_value_should_be_integrated($value){
-    return is_array($value) && $value[0] === '_cf';
+    return $this->array_has_key(0, $value) && $value[0] === '_cf';
   }
 
   function integrate_field_value($type = '', $options = [], $prefix_key = ''){
@@ -187,6 +191,10 @@ class Fields {
 		$_key .= $key;
 		return $_key;
 	}
+
+  function array_has_key($k = 0, $a = null){
+    return isset($a) && is_array($a) && array_key_exists($k, $a);
+  }
 
   public function get_set($set){
     if(property_exists($this, $set)){
