@@ -32,7 +32,9 @@ class Fields {
         'instruction_placement' => 'label',
         'hide_on_screen' => ['the_content'],
         'active' => true,
-        'fields' => $this->integrate_fields($i['fields'], $k)
+        'fields' => $this->integrate_fields($i['fields'], $k),
+        'show_in_graphql' => 1,
+        'graphql_field_name' => 'acf'
       ]);
 
       acf_add_local_field_group($_d);
@@ -56,6 +58,7 @@ class Fields {
         $f[] = array_merge(
           [
             'name' => $key,
+            'show_in_graphql' => 1,
             'wpml_cf_preferences' => 2
           ],
           $values,
