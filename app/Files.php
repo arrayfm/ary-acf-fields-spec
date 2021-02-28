@@ -4,8 +4,19 @@ namespace AryAcfFields;
 
 class Files {
 
-  function get_files_in_folder($folder){
-    $files = $this->get_field_folder($folder);
+  function get_files_in_folder($folders){
+    $files = NULL;
+    if(is_array($folders)){
+      foreach($folders as $folder){
+        $files = $this->get_field_folder($folder);
+        if($files){
+          break;
+        }
+      }
+    } else if(is_string($folders)) {
+      $files = $this->get_field_folder($folders);
+    }
+
     if($files){
       $dir = new \DirectoryIterator($files);
       $file_paths = [];

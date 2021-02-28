@@ -16,9 +16,9 @@ class Helper {
     }
   }
 
-  function group_file_set($name){
+  function group_file_set($names){
     $file_reader = new Files();
-    $files = $file_reader->get_files_in_folder($name);
+    $files = $file_reader->get_files_in_folder($names);
     
     $set = [];
 

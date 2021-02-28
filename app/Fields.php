@@ -23,7 +23,7 @@ class Fields {
   function setup_fields(){
     $h = new Helper();
 
-    $h->iterate_file_set('sets', function($k, $i){
+    $h->iterate_file_set(['groups', 'sets'], function($k, $i){
       $_d = array_merge($i, [
         'key' => $k,
         'position' => $this->array_has_key('position', $i) ? $i['position'] : 'normal',
