@@ -26,15 +26,15 @@ class Fields {
     $h->iterate_file_set(['groups', 'sets'], function($k, $i){
       $_d = array_merge($i, [
         'key' => $k,
-        'position' => $this->array_has_key('position', $i) ? $i['position'] : 'normal',
+        'position' => $this->arraykey_merge_default($i, 'position', 'normal'),
         'style' => 'seamless',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
         'hide_on_screen' => ['the_content'],
         'active' => true,
         'fields' => $this->integrate_fields($i['fields'], $k),
-        'show_in_graphql' => 1,
-        'graphql_field_name' => 'acf'
+        'show_in_graphql' => $this->arraykey_merge_default($i, 'show_in_graphql', 1),
+        'graphql_field_name' => $this->arraykey_merge_default($i, 'graphql_field_name', 'acf')
       ]);
 
       acf_add_local_field_group($_d);
@@ -197,6 +197,10 @@ class Fields {
 
   function array_has_key($k = 0, $a = null){
     return isset($a) && is_array($a) && array_key_exists($k, $a);
+  }
+
+  function arraykey_merge_default($array = [], $key = '', $default_value = ''){
+    return $this->array_has_key($key, $array) ? $array[$key] : $default_value;
   }
 
   public function get_set($set){
