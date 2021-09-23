@@ -174,8 +174,17 @@ class Fields {
           return NULL;
         }
 
+        $_prefix_key = $prefix_key;
+        if(isset($options['parent'])){
+          $prefix_key_parts = explode('_', $prefix_key);
+          if(count($prefix_key_parts) > $options['parent']){
+            $prefix_key_parts = array_slice($prefix_key_parts, 0, 0 - $options['parent']);
+            $_prefix_key = implode('_', $prefix_key_parts);
+          }
+        }
+
         $_conditional_options = array_merge([
-          'field' => $this->get_field_key($options['key'], $prefix_key),
+          'field' => $this->get_field_key($options['key'], $_prefix_key),
           'operator' => '==',
           'value' => '1'
         ], $options);
